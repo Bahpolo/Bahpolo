@@ -20,7 +20,9 @@ func main() {
 	http.HandleFunc("/", authMiddleware(handleRequest))
 	http.HandleFunc("/page", handlePageRequest)
 
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	startPort := os.Getenv("PORT")
+
+	log.Fatal(http.ListenAndServe(":"+startPort, nil))
 }
 
 func authMiddleware(next http.HandlerFunc) http.HandlerFunc {
