@@ -1,15 +1,18 @@
 package main
 
 import (
+	"database/sql"
 	"fmt"
 	"github.com/joho/godotenv"
 	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
+
+	_ "github.com/go-sql-driver/mysql"
 )
 
-var requestData string // Variable pour stocker les données de la requête
+var requestData string
 
 func main() {
 	errenvload := godotenv.Load()
@@ -17,8 +20,8 @@ func main() {
 		log.Fatal("Erreur lors du chargement du fichier .env")
 	}
 
-	http.HandleFunc("/", authMiddleware(handleRequest))
-	http.HandleFunc("/page", handlePageRequest)
+	http.HandleFunc("/", handlePageRequest)
+	http.HandleFunc("/api", authMiddleware(handleRequest))
 
 	startPort := os.Getenv("PORT")
 
@@ -27,20 +30,29 @@ func main() {
 
 func authMiddleware(next http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		apiKey := os.Getenv("API_KEY") // Récupérer la clé d'API depuis le fichier env
-
-		// Vérifier la clé d'API dans l'en-tête de la requête
-		if r.Header.Get("API-Key") != apiKey {
+		apiKey := os.Getenv("API_KEY")
+		if r.Header.Get("key") != apiKey {
 			http.Error(w, "Unauthorized", http.StatusUnauthorized)
 			return
 		}
-
 		next(w, r)
 	}
 }
 
+func connectDB() (*sql.DB, error) {
+	dbHost := os.Getenv("DATABASE_HOST")
+	dbPort := os.Getenv("DATABASE_PORT")
+	dbUser := os.Getenv("DATABASE_USER")
+	dbPassword := os.Getenv("DATABASE_PASSWORD")
+	dbName := os.Getenv("DATABASE_NAME")
+	db, err := sql.Open("mysql", ""+dbUser+":"+dbPassword+"@tcp("+dbHost+":"+dbPort+")/"+dbName+"")
+	if err != nil {
+		return nil, err
+	}
+	return db, nil
+}
+
 func handleRequest(w http.ResponseWriter, r *http.Request) {
-	// Lire le corps de la requête
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
 		http.Error(w, "Bad Request", http.StatusBadRequest)
@@ -48,32 +60,74 @@ func handleRequest(w http.ResponseWriter, r *http.Request) {
 	}
 	defer r.Body.Close()
 
-	// Stocker les données de la requête
 	requestData = string(body)
 
-	// Répondre avec un statut 200 OK
+	db, err := connectDB()
+	if err != nil {
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
+	defer db.Close()
+
+	stmt, err := db.Prepare("INSERT INTO logs (request_data, additional_info) VALUES (?, ?)")
+	if err != nil {
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
+	defer stmt.Close()
+
+	_, err = stmt.Exec(requestData, "")
+	if err != nil {
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
+
 	w.WriteHeader(http.StatusOK)
 }
 
 func handlePageRequest(w http.ResponseWriter, r *http.Request) {
-	// Générer la réponse HTML de la page
+	db, err := connectDB()
+	if err != nil {
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
+	defer db.Close()
+
+	rows, err := db.Query("SELECT request_data, additional_info FROM logs")
+	if err != nil {
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
+	defer rows.Close()
+
+	var responseData string
+	for rows.Next() {
+		var col1, col2 string
+		err := rows.Scan(&col1, &col2)
+		if err != nil {
+			http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+			return
+		}
+		responseData += fmt.Sprintf("Request Data: %s, Additional Info: %s\n", col1, col2)
+	}
+
 	html := `
 		<!DOCTYPE html>
 		<html>
 		<head>
+			<meta charset="UTF-8"></meta>
 			<title>Ma page web</title>
 		</head>
 		<body>
 			<h1>Bienvenue sur ma page web</h1>
 			<p>Données de la requête :</p>
 			<pre>%s</pre>
+			<p>Données de la base de données :</p>
+			<pre>%s</pre>
 		</body>
 		</html>
 	`
 
-	// Définir le type de contenu de la réponse
 	w.Header().Set("Content-Type", "text/html")
-
-	// Écrire la réponse HTML dans le corps de la réponse
-	fmt.Fprintf(w, html, requestData)
+	fmt.Fprintf(w, html, requestData, responseData)
 }
