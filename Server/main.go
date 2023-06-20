@@ -27,7 +27,9 @@ func main() {
 	}
 
 	http.HandleFunc("/", handlePageRequest)
+	http.HandleFunc("/dashboard", handleDashboardRequest)
 	http.HandleFunc("/api", authMiddleware(handleRequest))
+	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 
 	startPort := os.Getenv("PORT")
 
@@ -122,7 +124,23 @@ func handlePageRequest(w http.ResponseWriter, r *http.Request) {
 		ResponseData: responseData,
 	}
 
-	tmpl, err := template.ParseFiles("./static/index.html")
+	tmpl, err := template.ParseFiles("./template/index.html")
+	if err != nil {
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
+
+	err = tmpl.Execute(w, data)
+	if err != nil {
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
+}
+func handleDashboardRequest(w http.ResponseWriter, r *http.Request) {
+
+	data := PageData{}
+
+	tmpl, err := template.ParseFiles("./template/dashboard.html")
 	if err != nil {
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 		return
