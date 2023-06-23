@@ -1,0 +1,107 @@
+.nav-lateral {
+    z-index: 100;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 320px;
+    background-color: var(--black-orange-color);
+    overflow: hidden;
+}
+.nav-logo {
+    position: relative;
+    width: 90%;
+    aspect-ratio: 300/102;
+    margin: 0 auto;
+}
+.nav-logo::after {
+    content: '';
+    position: relative;
+    display: block;
+    width: 90%;
+    height: 2px;
+    margin: 0 auto;
+    opacity: .6;
+    background-color: var(--white-color);
+}
+.nav-logo .logo {
+    height: 100%;
+    width: 100%;
+    background-image: url("../../img/logo-bahpolo-300.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.nav-lef_top {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    overflow: hidden;
+}
+.nav-left .nav-item {
+    position: relative;
+    list-style: none;
+}
+.nav-left .nav-item a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 50px;
+    width: calc(100% - 10px);
+    margin: 0 auto;
+    padding: 0 16px;
+    color: var(--white-color);
+    text-decoration: none;
+    text-align: left;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.nav-left .nav-item a:hover,
+.nav-left .nav-sub_item.active a {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+.nav-left .nav-item i {
+    font-size: 22px;
+}
+.nav-left .nav-item .bi-chevron-double-right,
+.nav-left .nav-item_sub-menu .bi-chevron-right {
+    font-size: 18px;
+    margin-left: auto;
+    transition: transform .3s ease-in-out,
+                opacity .3s ease-in-out;
+}
+.nav-left .nav-item .bi-chevron-double-right {
+    opacity: 0;
+    transform: translateX(-25px);
+}
+.nav-left .nav-item a:hover .bi-chevron-double-right {
+    opacity: 1;
+    transform: translateX(0);
+}
+.nav-left .nav-item_sub-menu.active .bi-chevron-right {
+    transform: rotateZ(90deg);
+}
+.nav-left .nav-item span {
+    font-size: 18px;
+    margin-left: 25px;
+}
+.nav-left .nav-sub_menu {
+    opacity: 0;
+    visibility: hidden;
+    max-height: 0;
+    transition: opacity 1s, max-height 1s;
+    overflow: hidden;
+}
+.nav-left .nav-item_sub-menu.active .nav-sub_menu {
+    opacity: 1;
+    visibility: visible;
+    max-height: 400px;
+}
+.nav-left .nav-sub_item {
+    margin-left: 40px;
+    list-style: none;
+}
+.nav-left .nav-sub_item span {
+    margin-left: 0;
+}
