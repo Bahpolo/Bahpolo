@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 	"github.com/joho/godotenv"
+	"html/template"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -14,6 +15,11 @@ import (
 
 var requestData string
 
+type PageData struct {
+	RequestData  string
+	ResponseData string
+}
+
 func main() {
 	errenvload := godotenv.Load()
 	if errenvload != nil {
@@ -21,7 +27,9 @@ func main() {
 	}
 
 	http.HandleFunc("/", handlePageRequest)
+	http.HandleFunc("/dashboard", handleDashboardRequest)
 	http.HandleFunc("/api", authMiddleware(handleRequest))
+	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 
 	startPort := os.Getenv("PORT")
 
@@ -111,23 +119,36 @@ func handlePageRequest(w http.ResponseWriter, r *http.Request) {
 		responseData += fmt.Sprintf("Request Data: %s, Additional Info: %s\n", col1, col2)
 	}
 
-	html := `
-		<!DOCTYPE html>
-		<html>
-		<head>
-			<meta charset="UTF-8"></meta>
-			<title>Ma page web</title>
-		</head>
-		<body>
-			<h1>Bienvenue sur ma page web</h1>
-			<p>Données de la requête :</p>
-			<pre>%s</pre>
-			<p>Données de la base de données :</p>
-			<pre>%s</pre>
-		</body>
-		</html>
-	`
+	data := PageData{
+		RequestData:  requestData,
+		ResponseData: responseData,
+	}
 
-	w.Header().Set("Content-Type", "text/html")
-	fmt.Fprintf(w, html, requestData, responseData)
+	tmpl, err := template.ParseFiles("./template/index.html")
+	if err != nil {
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
+
+	err = tmpl.Execute(w, data)
+	if err != nil {
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
+}
+func handleDashboardRequest(w http.ResponseWriter, r *http.Request) {
+
+	data := PageData{}
+
+	tmpl, err := template.ParseFiles("./template/dashboard.html")
+	if err != nil {
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
+
+	err = tmpl.Execute(w, data)
+	if err != nil {
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
 }
