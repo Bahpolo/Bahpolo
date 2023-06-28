@@ -1,55 +1,214 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - BahPolo</title>
-    <link rel="stylesheet" href="/static/css/style.css">
-    <link rel="stylesheet" href="/static/css/dashboard/nav.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
-    <script type="application/javascript" src="/static/js/nav.js" defer></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Dashboard - BahPolo</title>
+	<link rel="stylesheet" href="/static/css/style.css">
+	<link rel="stylesheet" href="/static/css/dashboard/nav.css">
+	<link rel="stylesheet" href="/static/css/dashboard/dashboard.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+	<script type="application/javascript" src="/static/js/nav.js" defer></script>
+	<script type="application/javascript" src="/static/js/dashboard.js" defer></script>
 </head>
 <body>
-    <header class="nav-lateral">
-        <div class="nav-logo">
-            <a href="/">
-                <div class="logo"></div>
-            </a>
-        </div>
-        <nav class="nav-left">
-            <ul class="nav-lef_top">
-                <li class="nav-item">
-                    <a href="#">
-                        <i class="bi bi-speedometer2"></i>
-                        <span>Dashboard</span>
-                        <i class="bi bi-chevron-double-right"></i>
-                    </a>
-                </li>
-                <div class="nav-sub_menu_group">
-                    <li class="nav-item nav-item_sub-menu">
-                        <a href="#">
-                            <i class="bi bi-hdd"></i>
-                            <span>Logs</span>
-                            <i class="bi bi-chevron-right"></i>
-                        </a>
-                        <ul class="nav-sub_menu">
-                            <li class="nav-sub_item">
-                                <a href="#">
-                                    <span>Details</span>
-                                    <i class="bi bi-chevron-double-right"></i>
-                                </a>
-                            </li>
-                            <li class="nav-sub_item">
-                                <a href="#">
-                                    <span>Ressources</span>
-                                    <i class="bi bi-chevron-double-right"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                </div>
-            </ul>
-        </nav>
-    </header>
+	<header class="nav-lateral">
+		<div class="nav-logo">
+			<a href="/">
+				<div class="logo"></div>
+			</a>
+		</div>
+		<nav class="nav-left">
+			<ul class="nav-lef_top">
+				<li class="nav-item">
+					<a href="#">
+						<i class="bi bi-speedometer2"></i>
+						<span>Dashboard</span>
+						<i class="bi bi-chevron-double-right"></i>
+					</a>
+				</li>
+				<div class="nav-sub_menu_group">
+					<li class="nav-item nav-item_sub-menu">
+						<a href="javascript:void(0)">
+							<i class="bi bi-hdd"></i>
+							<span>Logs</span>
+							<i class="bi bi-chevron-right"></i>
+						</a>
+						<ul class="nav-sub_menu">
+							<li class="nav-sub_item">
+								<a href="#">
+									<span>Details</span>
+									<i class="bi bi-chevron-double-right"></i>
+								</a>
+							</li>
+							<li class="nav-sub_item">
+								<a href="#">
+									<span>Ressources</span>
+									<i class="bi bi-chevron-double-right"></i>
+								</a>
+							</li>
+						</ul>
+					</li>
+				</div>
+			</ul>
+		</nav>
+	</header>
+
+	<section class="body-container">
+		<div class="body-collumn">
+			<div class="body-row">
+				<div class="table-container">
+					<div class="table-header">
+						<div class="table-header-top">
+							<span>Logs</span>
+						</div>
+						<div class="table-header-bottom">
+							<span class="table-item header_item-date">Date</span>
+							<span class="table-item header_item-hour">Heure</span>
+							<span class="table-item header_item-ip_client">Adresse IP client</span>
+							<span class="table-item header_item-navigator">Navigateur</span>
+							<span class="table-item header_item-os">OS</span>
+							<span class="table-item header_item-ip_serveur">Adresse IP serveur</span>
+						</div>
+					</div>
+					<div class="table-body">
+						<div class="table-body-row">
+							<span class="table-item item-date">23/07/2006</span>
+							<span class="table-item item-hour">14:54:35</span>
+							<span class="table-item item-ip_client">90.22.02.156</span>
+							<span class="table-item item-navigator">Firefox</span>
+							<span class="table-item item-os">Windows 11</span>
+							<span class="table-item item-ip_serveur">132.123.3.50</span>
+						</div>
+						<div class="table-body-row">
+							<span class="table-item item-date">23/07/2006</span>
+							<span class="table-item item-hour">14:54:35</span>
+							<span class="table-item item-ip_client">90.22.02.156</span>
+							<span class="table-item item-navigator">Firefox</span>
+							<span class="table-item item-os">Windows 11</span>
+							<span class="table-item item-ip_serveur">132.123.3.50</span>
+						</div>
+						<div class="table-body-row">
+							<span class="table-item item-date">23/07/2006</span>
+							<span class="table-item item-hour">14:54:35</span>
+							<span class="table-item item-ip_client">90.22.02.156</span>
+							<span class="table-item item-navigator">Firefox</span>
+							<span class="table-item item-os">Windows 11</span>
+							<span class="table-item item-ip_serveur">132.123.3.50</span>
+						</div>
+						<div class="table-body-row">
+							<span class="table-item item-date">23/07/2006</span>
+							<span class="table-item item-hour">14:54:35</span>
+							<span class="table-item item-ip_client">90.22.02.156</span>
+							<span class="table-item item-navigator">Firefox</span>
+							<span class="table-item item-os">Windows 11</span>
+							<span class="table-item item-ip_serveur">132.123.3.50</span>
+						</div>
+						<div class="table-body-row">
+							<span class="table-item item-date">23/07/2006</span>
+							<span class="table-item item-hour">14:54:35</span>
+							<span class="table-item item-ip_client">90.22.02.156</span>
+							<span class="table-item item-navigator">Firefox</span>
+							<span class="table-item item-os">Windows 11</span>
+							<span class="table-item item-ip_serveur">132.123.3.50</span>
+						</div>
+						<div class="table-body-row">
+							<span class="table-item item-date">23/07/2006</span>
+							<span class="table-item item-hour">14:54:35</span>
+							<span class="table-item item-ip_client">90.22.02.156</span>
+							<span class="table-item item-navigator">Firefox</span>
+							<span class="table-item item-os">Windows 11</span>
+							<span class="table-item item-ip_serveur">132.123.3.50</span>
+						</div>
+						<div class="table-body-row">
+							<span class="table-item item-date">23/07/2006</span>
+							<span class="table-item item-hour">14:54:35</span>
+							<span class="table-item item-ip_client">90.22.02.156</span>
+							<span class="table-item item-navigator">Firefox</span>
+							<span class="table-item item-os">Windows 11</span>
+							<span class="table-item item-ip_serveur">132.123.3.50</span>
+						</div>
+						<div class="table-body-row">
+							<span class="table-item item-date">23/07/2006</span>
+							<span class="table-item item-hour">14:54:35</span>
+							<span class="table-item item-ip_client">90.22.02.156</span>
+							<span class="table-item item-navigator">Firefox</span>
+							<span class="table-item item-os">Windows 11</span>
+							<span class="table-item item-ip_serveur">132.123.3.50</span>
+						</div>
+						<div class="table-body-row">
+							<span class="table-item item-date">23/07/2006</span>
+							<span class="table-item item-hour">14:54:35</span>
+							<span class="table-item item-ip_client">90.22.02.156</span>
+							<span class="table-item item-navigator">Firefox</span>
+							<span class="table-item item-os">Windows 11</span>
+							<span class="table-item item-ip_serveur">132.123.3.50</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="body-row">
+				<div class="box-container">
+					<div class="box-header">
+						<div class="box-header-top">
+							<span>Statistiques utilisation</span>
+						</div>
+					</div>
+					<div class="box-body">
+						<img src="/static/img/statistique-user.png" alt="">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="body-collumn">
+			<div class="body-row">
+				<div class="table-container">
+					<div class="table-header">
+						<div class="table-header-top">
+							<span>Machines connectées</span>
+						</div>
+						<div class="table-header-bottom">
+							<span class="table-item header_item-machine_name">Nom de la machine</span>
+							<span class="table-item header_item-machine_ip">Adresse IP machine</span>
+							<span class="table-item header_item-UUID">UUID</span>
+							<span class="table-item header_item-statut">Statut</span>
+						</div>
+					</div>
+					<div class="table-body">
+						<div class="table-body-row">
+							<span class="table-item item-machine_name">SNC-panel</span>
+							<span class="table-item item-machine_ip">192.168.1.100</span>
+							<span class="table-item item-UUID">xns202UOP</span>
+							<span class="table-item item-statut statut-online item-statut"></span>
+						</div>
+						<div class="table-body-row">
+							<span class="table-item item-machine_name">CRMEL-web</span>
+							<span class="table-item item-machine_ip">192.168.1.200</span>
+							<span class="table-item item-UUID">cr23mel98</span>
+							<span class="table-item item-statut statut-offline item-statut"></span>
+						</div>
+						<div class="table-body-row">
+							<span class="table-item item-machine_name">GBA-rooter</span>
+							<span class="table-item item-machine_ip">192.168.19.300</span>
+							<span class="table-item item-UUID">vAG3853</span>
+							<span class="table-item item-statut statut-online item-statut"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="body-row">
+				<div class="box-container">
+					<div class="box-header">
+						<div class="box-header-top">
+							<span>Informations système</span>
+						</div>
+					</div>
+					<div class="box-body">
+						<img src="/static/img/info-system.png" alt="">
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 </body>
 </html>
