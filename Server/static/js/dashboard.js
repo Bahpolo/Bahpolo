@@ -36,8 +36,9 @@ for (var i = 0; i < item_date.length; i++) {
     item_navigator[i].style.width = headerItem_navigator.offsetWidth+"px";
     item_os[i].style.width = headerItem_os.offsetWidth+"px";
     item_ip_serveur[i].style.width = headerItem_ip_serveur.offsetWidth+"px";
-
+}
     
+for (var i = 0; i < item_machine_name.length; i++) {
     headerItem_machine_name.style.width = item_machine_name[0].offsetWidth+"px";
     headerItem_machine_ip.style.width = item_machine_ip[0].offsetWidth+"px";
     headerItem_UUID.style.width = item_UUID[0].offsetWidth+"px";

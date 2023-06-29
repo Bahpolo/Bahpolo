@@ -10,6 +10,7 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
 	<script type="application/javascript" src="/static/js/nav.js" defer></script>
 	<script type="application/javascript" src="/static/js/dashboard.js" defer></script>
+	<script type="application/javascript" src="/static/js/pie-chart.js" defer></script>
 </head>
 <body>
 	<header class="nav-lateral">
@@ -21,7 +22,7 @@
 		<nav class="nav-left">
 			<ul class="nav-lef_top">
 				<li class="nav-item">
-					<a href="#">
+					<a href="/dashboard">
 						<i class="bi bi-speedometer2"></i>
 						<span>Dashboard</span>
 						<i class="bi bi-chevron-double-right"></i>
@@ -204,7 +205,26 @@
 						</div>
 					</div>
 					<div class="box-body">
-						<img src="/static/img/info-system.png" alt="">
+						<div class="box-row">
+							<div class="box-chart">
+								<h3>Processeur :</h3>
+								<pie-chart data="25;75" donut="0.4" labels="Utilisé;Libre"></pie-chart>
+							</div>
+							<div class="box-data">
+								<p>Machines connectées : <span id="connected_machines">236</span></p>
+								<p>Clients connectées : <span id="connected_customers">128</span></p>
+							</div>
+						</div>
+						<div class="box-row">
+							<div class="box-chart">
+								<h3>RAM :</h3>
+								<pie-chart data="40;60" donut="0.4" labels="Utilisé;Libre"></pie-chart>
+							</div>
+							<div class="box-data">
+								<p>Uptime : <span id="uptime">5j 10h 38min 56s</span></p>
+								<p>Débit réseau : <span id="network_throughput">528 Mbits/s</span></p>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
