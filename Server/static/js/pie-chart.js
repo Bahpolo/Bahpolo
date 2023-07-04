@@ -29,6 +29,12 @@ class PieChart extends HTMLElement {
     constructor() {
         super();
         const shadow = this.attachShadow({mode: 'open'});
+        const divChartBx = document.createElement('div');
+        divChartBx.className = "chart_box";
+        shadow.appendChild(divChartBx);
+        const divPieChartBx = document.createElement('div');
+        divPieChartBx.className = "pie-chart_box";
+        divChartBx.appendChild(divPieChartBx);
         const labels = this.getAttribute("labels")?.split(';') ?? [];
         const donut = this.getAttribute("donut") ?? "0";
         const colors = this.getAttribute("colors")?.split(';') ?? ["#820f68", "#2487a6", "#fd8b3d", "#b75838"];
@@ -65,16 +71,40 @@ class PieChart extends HTMLElement {
         });
         this.labels = labels.map((label) => {
             const div = document.createElement('div');
+            div.className = "label";
             div.innerText = label;
-            shadow.appendChild(div);
+            divPieChartBx.appendChild(div);
             return div;
         });
+        const divLengendBox = document.createElement('div');
+        divLengendBox.className = "legend_box";
+        divChartBx.appendChild(divLengendBox);
+        this.divLengendBoxRoot = divLengendBox;
+        this.labelsList = labels;
+        this.colorsList = colors;
 
         const style = document.createElement("style");
         style.innerHTML = `
             :host {
                 display: block;
                 position: relative;
+            }
+            div.chart_box {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+            }
+            div.pie-chart_box {
+                position: relative;
+                height: 150px;
+                width: 150px;
+                box-sizing: border-box;
+            }
+            div.legend_box {
+                margin-left: 30px;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
             }
             svg {
                 width: 100%;
@@ -87,7 +117,7 @@ class PieChart extends HTMLElement {
             path:hover {
                 opacity: 0.6;
             }
-            div {
+            div.label {
                 position: absolute;
                 top: 0;
                 left: 0;
@@ -99,11 +129,23 @@ class PieChart extends HTMLElement {
                 transition: opacity .3s;
             }
             .is-active {
-                opacity: 1;
+                opacity: 1 !important;
+            }
+            div.legend {
+                display: flex;
+                flex-direction: row;
+            }
+            span.legend-color {
+                display: block;
+                position: relative;
+                height: 20px;
+                width: 20px;
+                border-radius: 5px;
+                margin-right: 15px;
             }
         `;
-        shadow.appendChild(style);
-        shadow.appendChild(svg);
+        divPieChartBx.appendChild(style);
+        divPieChartBx.appendChild(svg);
     }
 
     connectedCallback() {
@@ -130,7 +172,10 @@ class PieChart extends HTMLElement {
             this.lines[k].setAttribute('y2', start.y);
             const ratio = (this.data[k] / total) * progress;
             if (progress===1) {
+                const color = this.colorsList[k % (this.colorsList.length - 1)];
+                console.log(this.labels[k]);
                 this.positionLabel(this.labels[k], angle + ratio * Math.PI, ratio);
+                this.createLegend(this.divLengendBoxRoot, this.labelsList[k], color, ratio);
             }
             angle += ratio  * 2 * Math.PI;
             const end = Point.formAngle(angle);
@@ -165,7 +210,25 @@ class PieChart extends HTMLElement {
         const point = Point.formAngle(angle);
         label.style.setProperty('top', `${(point.y * 1.25 * 0.5 + 0.5) * 100}%`);
         label.style.setProperty('left', `${(point.x * 1.25 * 0.5 + 0.5) * 100}%`);
-        label.innerHTML += ' ('+ratio+'%)'
+        label.innerHTML += ' ('+ratio+'%)';
+    }
+
+    createLegend(elem, label, color, ratio) {
+        if(!elem || !label || !ratio || !color) {
+            return;
+        }
+        ratio = Math.floor(ratio * 100);
+        const divLengend = document.createElement('div');
+        divLengend.className = "legend";
+        elem.appendChild(divLengend);
+            const spanLengendColor = document.createElement('span');
+            spanLengendColor.className = "legend-color";
+            spanLengendColor.style.backgroundColor = color;
+            divLengend.appendChild(spanLengendColor);
+            const spanLengendTxt = document.createElement('span');
+            spanLengendTxt.className = "legend-txt";
+            spanLengendTxt.innerHTML = label+" :<br>"+ratio+"%";
+            divLengend.appendChild(spanLengendTxt);
     }
 };
 

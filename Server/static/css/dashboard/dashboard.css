@@ -116,6 +116,15 @@ span.table-item {
 }
 .box-body pie-chart {
     height: 150px;
-    width: 150px;
-    margin: 15px 30px;
+    width: 300px;
+    margin: 15px 20px;
+}
+.box-body h4 {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    font-size: 20px;
+}
+.box-data {
+    position: relative;
+    margin-top: 40px;
 }
