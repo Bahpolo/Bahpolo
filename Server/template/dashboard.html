@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width;initial-scale=1.0">
 	<title>Dashboard - BahPolo</title>
 	<link rel="stylesheet" href="/static/css/style.css">
 	<link rel="stylesheet" href="/static/css/dashboard/nav.css">
@@ -10,7 +10,9 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
 	<script type="application/javascript" src="/static/js/nav.js" defer></script>
 	<script type="application/javascript" src="/static/js/dashboard.js" defer></script>
-	<script type="application/javascript" src="/static/js/pie-chart.js" defer></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+	<script type="application/javascript" src="/static/js/charts/area-chart.js" defer></script>
+	<script type="application/javascript" src="/static/js/charts/pie-chart.js" defer></script>
 </head>
 <body>
 	<header class="nav-lateral">
@@ -155,8 +157,27 @@
 							<h3>Statistiques utilisation</h3>
 						</div>
 					</div>
-					<div class="box-body">
-						<img src="/static/img/statistique-user.png" alt="">
+					<div class="box-body box-body_canva">
+						<div class="btn-canva-list">
+							<button id="btn-canva-year" class="active">Par année</button>
+							<button id="btn-canva-mouth">Par mois</button>
+							<button id="btn-canva-week">Par semaine</button>
+							<button id="btn-canva-day">Par jours</button>
+						</div>
+						<div class="canva-list">
+							<canvas id="area-chart-year" class="active" aria-label="Graphique d'utilisation" role="img" data="83;20;30;40;50;60;10;100;25;113;43;59">
+								<p>Votre navigateur n'est pas compatible avec les canvas.</p>
+							</canvas>
+							<canvas id="area-chart-mouth" aria-label="Graphique d'utilisation" role="img" data="9;11;21;23;15;28;10;3;25">
+								<p>Votre navigateur nest pas compatible avec les canvas.</p>
+							</canvas>
+							<canvas id="area-chart-week" aria-label="Graphique dutilisation" role="img" data="8;6;16;3;14;18;20">
+								<p>Votre navigateur nest pas compatible avec les canvas.</p>
+							</canvas>
+							<canvas id="area-chart-day" aria-label="Graphique dutilisation" role="img" data="0.5;2;4;6;8;10;12;14;16;18;20;22">
+								<p>Votre navigateur n'est pas compatible avec les canvas.</p>
+							</canvas>
+						</div>
 					</div>
 				</div>
 			</div>

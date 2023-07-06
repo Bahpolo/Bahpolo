@@ -128,3 +128,62 @@ span.table-item {
     position: relative;
     margin-top: 40px;
 }
+
+.box-body_canva {
+    flex-direction: column;
+    width: 85%;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.btn-canva-list {
+    position: relative;
+    margin-bottom: 10px;
+}
+.btn-canva-list button {
+    position: relative;
+    padding: 5px 10px;
+    color: var(--white-color);
+    font-size: 14px;
+    border: 3px solid var(--purple-color);
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    background-color: var(--blue-color);
+    cursor: pointer;
+    transition: all .3s;
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    -ms-transition: all .3s;
+    -o-transition: all .3s;
+}
+.btn-canva-list button.active {
+    position: relative;
+    padding: 5px 10px;
+    color: var(--white-color);
+    font-size: 14px;
+    /* border: 3px solid var(--blue-color); */
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    background-color: var(--purple-color);
+    cursor: pointer;
+}
+
+.canva-list canvas {
+    height: 0 !important;
+    opacity: 0;
+    transition: opacity .5s ease-in-out;
+    -webkit-transition: opacity .5s ease-in-out;
+    -moz-transition: opacity .5s ease-in-out;
+    -ms-transition: opacity .5s ease-in-out;
+    -o-transition: opacity .5s ease-in-out;
+}
+.canva-list canvas.active {
+    height: inherit !important;
+    opacity: 1;
+}
