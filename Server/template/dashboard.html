@@ -1,9 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
 	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="viewport" content="width=device-width;initial-scale=1.0">
 	<title>Dashboard - BahPolo</title>
+    <link rel="shortcut icon" href="/static/img/favicon/favicon.ico">
+    <link rel="apple-touch-icon" href="/static/img/favicon/apple-touch-icon.png">
+    <link rel="apple-touch-icon-precomposed" href="/static/img/favicon/apple-touch-icon.png">
+    <link rel="shortcut icon" href="/static/img/favicon/favicon.ico">
 	<link rel="stylesheet" href="/static/css/style.css">
 	<link rel="stylesheet" href="/static/css/dashboard/nav.css">
 	<link rel="stylesheet" href="/static/css/dashboard/dashboard.css">
@@ -32,14 +37,14 @@
 				</li>
 				<div class="nav-sub_menu_group">
 					<li class="nav-item nav-item_sub-menu">
-						<a href="javascript:void(0)">
+						<a href="javascript:void(0)" class="subnav-link">
 							<i class="bi bi-hdd"></i>
 							<span>Logs</span>
 							<i class="bi bi-chevron-right"></i>
 						</a>
 						<ul class="nav-sub_menu">
 							<li class="nav-sub_item">
-								<a href="#">
+								<a href="/logs/details">
 									<span>Details</span>
 									<i class="bi bi-chevron-double-right"></i>
 								</a>
@@ -74,79 +79,99 @@
 							<span class="table-item header_item-ip_serveur">Adresse IP serveur</span>
 						</div>
 					</div>
-					<div class="table-body">
-						<div class="table-body-row">
-							<span class="table-item item-date">23/07/2006</span>
-							<span class="table-item item-hour">14:54:35</span>
-							<span class="table-item item-ip_client">90.22.02.156</span>
-							<span class="table-item item-navigator">Firefox</span>
-							<span class="table-item item-os">Windows 11</span>
-							<span class="table-item item-ip_serveur">132.123.3.50</span>
-						</div>
-						<div class="table-body-row">
-							<span class="table-item item-date">23/07/2006</span>
-							<span class="table-item item-hour">14:54:35</span>
-							<span class="table-item item-ip_client">90.22.02.156</span>
-							<span class="table-item item-navigator">Firefox</span>
-							<span class="table-item item-os">Windows 11</span>
-							<span class="table-item item-ip_serveur">132.123.3.50</span>
-						</div>
-						<div class="table-body-row">
-							<span class="table-item item-date">23/07/2006</span>
-							<span class="table-item item-hour">14:54:35</span>
-							<span class="table-item item-ip_client">90.22.02.156</span>
-							<span class="table-item item-navigator">Firefox</span>
-							<span class="table-item item-os">Windows 11</span>
-							<span class="table-item item-ip_serveur">132.123.3.50</span>
-						</div>
-						<div class="table-body-row">
-							<span class="table-item item-date">23/07/2006</span>
-							<span class="table-item item-hour">14:54:35</span>
-							<span class="table-item item-ip_client">90.22.02.156</span>
-							<span class="table-item item-navigator">Firefox</span>
-							<span class="table-item item-os">Windows 11</span>
-							<span class="table-item item-ip_serveur">132.123.3.50</span>
-						</div>
-						<div class="table-body-row">
-							<span class="table-item item-date">23/07/2006</span>
-							<span class="table-item item-hour">14:54:35</span>
-							<span class="table-item item-ip_client">90.22.02.156</span>
-							<span class="table-item item-navigator">Firefox</span>
-							<span class="table-item item-os">Windows 11</span>
-							<span class="table-item item-ip_serveur">132.123.3.50</span>
-						</div>
-						<div class="table-body-row">
-							<span class="table-item item-date">23/07/2006</span>
-							<span class="table-item item-hour">14:54:35</span>
-							<span class="table-item item-ip_client">90.22.02.156</span>
-							<span class="table-item item-navigator">Firefox</span>
-							<span class="table-item item-os">Windows 11</span>
-							<span class="table-item item-ip_serveur">132.123.3.50</span>
-						</div>
-						<div class="table-body-row">
-							<span class="table-item item-date">23/07/2006</span>
-							<span class="table-item item-hour">14:54:35</span>
-							<span class="table-item item-ip_client">90.22.02.156</span>
-							<span class="table-item item-navigator">Firefox</span>
-							<span class="table-item item-os">Windows 11</span>
-							<span class="table-item item-ip_serveur">132.123.3.50</span>
-						</div>
-						<div class="table-body-row">
-							<span class="table-item item-date">23/07/2006</span>
-							<span class="table-item item-hour">14:54:35</span>
-							<span class="table-item item-ip_client">90.22.02.156</span>
-							<span class="table-item item-navigator">Firefox</span>
-							<span class="table-item item-os">Windows 11</span>
-							<span class="table-item item-ip_serveur">132.123.3.50</span>
-						</div>
-						<div class="table-body-row">
-							<span class="table-item item-date">23/07/2006</span>
-							<span class="table-item item-hour">14:54:35</span>
-							<span class="table-item item-ip_client">90.22.02.156</span>
-							<span class="table-item item-navigator">Firefox</span>
-							<span class="table-item item-os">Windows 11</span>
-							<span class="table-item item-ip_serveur">132.123.3.50</span>
-						</div>
+					<div class="table-body h97">
+						<ul class="table-column">
+							<li class="table-body-row">
+								<div class="row-list-items">
+									<span class="table-item item-date">23/07/2006</span>
+									<span class="table-item item-hour">14:54:35</span>
+									<span class="table-item item-ip_client">90.22.02.156</span>
+									<span class="table-item item-navigator">Firefox</span>
+									<span class="table-item item-os">Windows 11</span>
+									<span class="table-item item-ip_serveur">132.123.3.50</span>
+								</div>
+							</li>
+							<li class="table-body-row">
+								<div class="row-list-items">
+									<span class="table-item item-date">23/07/2006</span>
+									<span class="table-item item-hour">14:54:35</span>
+									<span class="table-item item-ip_client">90.22.02.156</span>
+									<span class="table-item item-navigator">Firefox</span>
+									<span class="table-item item-os">Windows 11</span>
+									<span class="table-item item-ip_serveur">132.123.3.50</span>
+								</div>
+							</li>
+							<li class="table-body-row">
+								<div class="row-list-items">
+									<span class="table-item item-date">23/07/2006</span>
+									<span class="table-item item-hour">14:54:35</span>
+									<span class="table-item item-ip_client">90.22.02.156</span>
+									<span class="table-item item-navigator">Firefox</span>
+									<span class="table-item item-os">Windows 11</span>
+									<span class="table-item item-ip_serveur">132.123.3.50</span>
+								</div>
+							</li>
+							<li class="table-body-row">
+								<div class="row-list-items">
+									<span class="table-item item-date">23/07/2006</span>
+									<span class="table-item item-hour">14:54:35</span>
+									<span class="table-item item-ip_client">90.22.02.156</span>
+									<span class="table-item item-navigator">Firefox</span>
+									<span class="table-item item-os">Windows 11</span>
+									<span class="table-item item-ip_serveur">132.123.3.50</span>
+								</div>
+							</li>
+							<li class="table-body-row">
+								<div class="row-list-items">
+									<span class="table-item item-date">23/07/2006</span>
+									<span class="table-item item-hour">14:54:35</span>
+									<span class="table-item item-ip_client">90.22.02.156</span>
+									<span class="table-item item-navigator">Firefox</span>
+									<span class="table-item item-os">Windows 11</span>
+									<span class="table-item item-ip_serveur">132.123.3.50</span>
+								</div>
+							</li>
+							<li class="table-body-row">
+								<div class="row-list-items">
+									<span class="table-item item-date">23/07/2006</span>
+									<span class="table-item item-hour">14:54:35</span>
+									<span class="table-item item-ip_client">90.22.02.156</span>
+									<span class="table-item item-navigator">Firefox</span>
+									<span class="table-item item-os">Windows 11</span>
+									<span class="table-item item-ip_serveur">132.123.3.50</span>
+								</div>
+							</li>
+							<li class="table-body-row">
+								<div class="row-list-items">
+									<span class="table-item item-date">23/07/2006</span>
+									<span class="table-item item-hour">14:54:35</span>
+									<span class="table-item item-ip_client">90.22.02.156</span>
+									<span class="table-item item-navigator">Firefox</span>
+									<span class="table-item item-os">Windows 11</span>
+									<span class="table-item item-ip_serveur">132.123.3.50</span>
+								</div>
+							</li>
+							<li class="table-body-row">
+								<div class="row-list-items">
+									<span class="table-item item-date">23/07/2006</span>
+									<span class="table-item item-hour">14:54:35</span>
+									<span class="table-item item-ip_client">90.22.02.156</span>
+									<span class="table-item item-navigator">Firefox</span>
+									<span class="table-item item-os">Windows 11</span>
+									<span class="table-item item-ip_serveur">132.123.3.50</span>
+								</div>
+							</li>
+							<li class="table-body-row">
+								<div class="row-list-items">
+									<span class="table-item item-date">23/07/2006</span>
+									<span class="table-item item-hour">14:54:35</span>
+									<span class="table-item item-ip_client">90.22.02.156</span>
+									<span class="table-item item-navigator">Firefox</span>
+									<span class="table-item item-os">Windows 11</span>
+									<span class="table-item item-ip_serveur">132.123.3.50</span>
+								</div>
+							</li>
+						</ul>
 					</div>
 				</div>
 			</div>
@@ -196,25 +221,33 @@
 							<span class="table-item header_item-statut">Statut</span>
 						</div>
 					</div>
-					<div class="table-body">
-						<div class="table-body-row">
-							<span class="table-item item-machine_name">SNC-panel</span>
-							<span class="table-item item-machine_ip">192.168.1.100</span>
-							<span class="table-item item-UUID">xns202UOP</span>
-							<span class="table-item item-statut statut-online item-statut"></span>
-						</div>
-						<div class="table-body-row">
-							<span class="table-item item-machine_name">CRMEL-web</span>
-							<span class="table-item item-machine_ip">192.168.1.200</span>
-							<span class="table-item item-UUID">cr23mel98</span>
-							<span class="table-item item-statut statut-offline item-statut"></span>
-						</div>
-						<div class="table-body-row">
-							<span class="table-item item-machine_name">GBA-rooter</span>
-							<span class="table-item item-machine_ip">192.168.19.300</span>
-							<span class="table-item item-UUID">vAG3853</span>
-							<span class="table-item item-statut statut-online item-statut"></span>
-						</div>
+					<div class="table-body h97">
+						<ul class="table-column">
+							<li class="table-body-row">
+								<div class="row-list-items">
+									<span class="table-item item-machine_name">SNC-panel</span>
+									<span class="table-item item-machine_ip">192.168.1.100</span>
+									<span class="table-item item-UUID">xns202UOP</span>
+									<span class="table-item item-statut statut-online item-statut"></span>
+								</div>
+							</li>
+							<li class="table-body-row">
+								<div class="row-list-items">
+									<span class="table-item item-machine_name">CRMEL-web</span>
+									<span class="table-item item-machine_ip">192.168.1.200</span>
+									<span class="table-item item-UUID">cr23mel98</span>
+									<span class="table-item item-statut statut-offline item-statut"></span>
+								</div>
+							</li>
+							<li class="table-body-row">
+								<div class="row-list-items">
+									<span class="table-item item-machine_name">GBA-rooter</span>
+									<span class="table-item item-machine_ip">192.168.19.300</span>
+									<span class="table-item item-UUID">vAG3853</span>
+									<span class="table-item item-statut statut-online item-statut"></span>
+								</div>
+							</li>
+						</ul>
 					</div>
 				</div>
 			</div>

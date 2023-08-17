@@ -3,12 +3,13 @@ package main
 import (
 	"database/sql"
 	"fmt"
-	"github.com/joho/godotenv"
 	"html/template"
 	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
+
+	"github.com/joho/godotenv"
 
 	_ "github.com/go-sql-driver/mysql"
 )
@@ -28,6 +29,7 @@ func main() {
 
 	http.HandleFunc("/", handlePageRequest)
 	http.HandleFunc("/dashboard", handleDashboardRequest)
+	http.HandleFunc("/logs/details", handleLogsDetailsRequest)
 	http.HandleFunc("/api", authMiddleware(handleRequest))
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 
@@ -141,6 +143,22 @@ func handleDashboardRequest(w http.ResponseWriter, r *http.Request) {
 	data := PageData{}
 
 	tmpl, err := template.ParseFiles("./template/dashboard.html")
+	if err != nil {
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
+
+	err = tmpl.Execute(w, data)
+	if err != nil {
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
+}
+func handleLogsDetailsRequest(w http.ResponseWriter, r *http.Request) {
+
+	data := PageData{}
+
+	tmpl, err := template.ParseFiles("./template/logs/logs-details.html")
 	if err != nil {
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 		return

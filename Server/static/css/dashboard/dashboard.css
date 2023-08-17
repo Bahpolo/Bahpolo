@@ -22,6 +22,15 @@
     box-sizing: border-box;
     height: 50%;
 }
+.row-100p {
+    height: 100%;
+}
+.row-60p {
+    height: 60%;
+}
+.row-40p {
+    height: 40%;
+}
 .table-container {
     position: relative;
     background: rgb(130, 15, 104, 0.1);
@@ -36,32 +45,83 @@
     border-radius: 10px;
 }
 .table-header-top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     font-weight: 600;
     padding-top: 5px;
     padding-bottom: 10px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
+.search-bar {
+    padding: 5px 10px;
+    width: 80%;
+    border-radius: 10px;
+    background-color: #f2e7f0;
+}
+.search-bar input[type="search"] {
+    background-color: transparent;
+    border: none;
+    font-size: 14px;
+    font-style: italic;
+    width: calc(100% - 25px);
+}
+.search-bar button {
+    outline: none;
+    border: none;
+    background-color: transparent;
+}
+.search-bar .bi-search::before {
+    font-size: 18px;
+}
 .table-header-bottom {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    width: 100%;
     padding-top: 10px;
     padding-bottom: 5px;
-    display: flex;
-    width: 100%;
-    gap: 10px;
+    overflow: hidden;
 }
 .table-body {
+    position: relative;
+    padding: 10px;
+    overflow-y: scroll;
+}
+.table-body.h103 {
+    height: calc(100% - 103px);
+}
+.table-body.h97 {
+    height: calc(100% - 97px);
+}
+.table-column {
     display: flex;
     flex-direction: column;
-    padding: 10px 20px 10px;
+    list-style: none;
 }
 .table-body-row {
-    display: flex;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    padding: 10px 0;
+    padding: 5px 0;
     width: 100%;
+}
+.row-list-items {
+    display: flex;
+    justify-content: space-between;
     gap: 10px;
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.table-body-row:hover .row-list-items {
+    color: var(--white-color);
+    background-color: rgba(36, 135, 166, .6);
+}
+.table-body-row.active .row-list-items {
+    color: var(--white-color);
+    background-color: rgba(36, 135, 166, 1);
 }
 span.table-item {
-    flex: auto;
     text-align: center;
     text-wrap: nowrap;
 }
